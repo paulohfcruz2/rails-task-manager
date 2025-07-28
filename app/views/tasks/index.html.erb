@@ -1,0 +1,17 @@
+<h1>My tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li style="display: flex; align-items: center; gap: 10px;">
+      <%= form_with(model: task, url: task_path(task), method: :patch, local: true) do |f| %>
+        <%= f.check_box :completed, { checked: task.completed, onchange: 'this.form.submit()' } %>
+      <% end %>
+
+      <%= link_to task.title, detail_path(task), style: "flex: 1;" %>
+    </li>
+  <% end %>
+</ul>
+
+<div class="tasks-new-link">
+  <%= link_to "Add new task", tasks_new_path %>
+</div>
